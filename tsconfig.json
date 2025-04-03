@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2022",                                 /* Use modern JavaScript features */
+    "lib": ["ES2022", "DOM"],                           /* Include necessary libraries */
+    "module": "NodeNext",                               /* Use Node.js ESM module system */
+    "moduleResolution": "NodeNext",                     /* Correctly resolve Node.js modules */
+    "rootDir": "./",                                    /* Source files location */
+    "outDir": "dist",                                   /* Compiled output location */
+    "allowSyntheticDefaultImports": true,               /* Allows default imports from CommonJS modules */
+    "esModuleInterop": true,                            /* Enables interoperability between CommonJS and ESM */
+    "resolveJsonModule": true,                          /* Allows importing JSON files */
+    "forceConsistentCasingInFileNames": true,           /* Ensures case consistency in imports */
+    "skipLibCheck": true,                               /* Skips type checking of `.d.ts` files */
+
+    /* Type Checking */
+    "strict": true,                                     /* Enables all strict type-checking options */
+    "noImplicitAny": true,                              /* Prevents variables from having an implicit `any` type */
+    "strictNullChecks": true,                           /* Ensures proper handling of `null` and `undefined` */
+    "strictFunctionTypes": true,                        /* Ensures function parameter compatibility */
+    "strictBindCallApply": true,                        /* Checks `.bind()`, `.call()`, and `.apply()` argument correctness */
+    "strictPropertyInitialization": true,               /* Ensures all class properties are initialized */
+    "noImplicitThis": true,                             /* Prevents `this` from being implicitly `any` */
+    "useUnknownInCatchVariables": true,                 /* Enforces `unknown` instead of `any` in `catch` blocks */
+    "alwaysStrict": true,                               /* Ensures `'use strict'` is always enabled */
+
+    /* Linting & Code Quality */
+    "noUnusedLocals": true,                             /* Flags unused local variables */
+    "noUnusedParameters": true,                         /* Flags unused function parameters */
+    "exactOptionalPropertyTypes": true,                 /* More precise handling of optional properties */
+    "noImplicitReturns": true,                          /* Ensures functions always return a value */
+    "noFallthroughCasesInSwitch": true,                 /* Prevents unintentional fallthrough in `switch` statements */
+    "noUncheckedIndexedAccess": true,                   /* Ensures safe indexing of objects */
+
+    /* Project Settings */
+    "incremental": true,                                /* Speeds up compilation by using `.tsbuildinfo` */
+    "noEmit": false,                                    /* Allows emitting compiled JavaScript */
+    "sourceMap": true,                                  /* Generates `.map` files for debugging */
+    "baseUrl": "./",                                    /* Resolves non-relative imports from project root */
+    "paths": {
+      "@pages/*": ["model/pages/*"],                    /* Aliases for page objects */
+      "@locators": ["model/locators.ts"],               /* Alias for locators */
+      "@config": ["properties/config.ts"],              /* Alias for configuration */
+      "@data": ["properties/dataProperties.ts"]         /* Alias for test data */
+    }
+  },
+  "include": ["tests", "model", "properties"],          /* Includes test & model files */
+  "exclude": ["node_modules", "dist"]                   /* Excludes compiled output & dependencies */
+}
+
