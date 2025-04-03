@@ -29,7 +29,6 @@ test("Full E2E Test - Automation Exercise", async ({ page }) => {
   await cartPage.proceedToCheckout();
   await homePage.goToLoginPage();
   await loginPage.signUp();
-  //await accountCreationPage.completeSignup();
   await accountCreationPage.fillSignupForm();
   await accountCreationPage.submitSignupForm();
   await accountCreationPage.verifyAccountCreated();
@@ -46,7 +45,7 @@ test("Full E2E Test - Automation Exercise", async ({ page }) => {
     "12/25"
   );
 
-  await expect(page.locator(".title.text-center")).toHaveText("Order Placed!");
+  await expect(page.locator(".title.text-center").first()).toHaveText("Order Placed!");
   await accountPage.deleteAccount();
 });
 

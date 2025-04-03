@@ -3,24 +3,23 @@ import { faker } from "@faker-js/faker";
 
 export class LoginPage {
   readonly page: Page;
-  readonly loginNameField: Locator;
-  readonly loginEmailField: Locator;
-  readonly loginButton: Locator;
+  readonly signupNameField: Locator;
+  readonly signupEmailField: Locator;
+  readonly signupButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.loginNameField = page.locator("input[name='name']");
-    this.loginEmailField = page.locator("input[data-qa='signup-email']");
-    this.loginButton = page.locator("button[data-qa='signup-button']");
+    this.signupNameField = page.locator("input[name='name']");
+    this.signupEmailField = page.locator("input[data-qa='signup-email']");
+    this.signupButton = page.locator("button[data-qa='signup-button']");
   }
 
   async signUp() {
     const name = faker.person.firstName();
     const email = faker.internet.email();
 
-    await this.loginNameField.fill(name);
-    await this.loginEmailField.fill(email);
-    await this.loginButton.click();
-
+    await this.signupNameField.fill(name);
+    await this.signupEmailField.fill(email);
+    await this.signupButton.click();
   }
 }
