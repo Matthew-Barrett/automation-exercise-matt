@@ -12,7 +12,7 @@ const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
-export default define [
+export default defineConfig([
   js.configs.recommended, // Base ESLint config
 
   compat.config({
@@ -50,4 +50,4 @@ export default define [
       },
     },
   },
-];
+]);
