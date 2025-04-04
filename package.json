@@ -4,7 +4,7 @@
   "description": "Playwright automation framework",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts --config eslint.config.mjs",
+    "lint": "eslint . --c .ts --config eslint.config.mjs",
     "build": "tsc",
     "test": "npx playwright test",
     "test:lint": "npm run lint && npm run test",
