@@ -14,6 +14,7 @@ export class LoginPage {
     this.signupButton = page.locator("button[data-qa='signup-button']");
   }
 
+  // Enters a random name and email in the signup form and clicks the signup button
   async signUp() {
     const name = faker.person.firstName();
     const email = faker.internet.email();

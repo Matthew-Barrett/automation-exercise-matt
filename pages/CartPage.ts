@@ -10,10 +10,12 @@ export class CartPage {
 
   }
 
+  // Verifies that the cart page is displayed by checking the URL
   async verifyCartPage() {
     await expect(this.page).toHaveURL(/\/view_cart/);
   }
 
+  // Clicks the "Proceed to Checkout" button
   async proceedToCheckout() {
     await this.proceedToCheckoutButton.click();
   }

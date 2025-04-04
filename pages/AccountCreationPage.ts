@@ -52,6 +52,7 @@ export class AccountCreationPage {
     };
   }
 
+  // Fill the signup form with random user data
   async fillSignupForm() {
     const userData = this.generateRandomUserData();
     await this.titleRadio.first().check();
@@ -78,6 +79,7 @@ export class AccountCreationPage {
     await this.submitSignupForm();
   }
 
+  // Verify that the account creation was successful by checking for the success message
   async verifyAccountCreated() {
     await this.page.waitForSelector("h2:has-text('Account Created!')");
     await this.page.waitForSelector('p:has-text("Congratulations! Your new account has been successfully created!")');

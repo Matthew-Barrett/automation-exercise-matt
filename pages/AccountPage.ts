@@ -9,6 +9,7 @@ export class AccountPage {
     this.deleteAccountButton = page.locator("a[href='/delete_account']");
   }
 
+  // Verify User is logged in by checking the presence of the .logged-user element
   async verifyLoggedIn(username: string) {
     await expect(this.page.locator(".logged-user")).toHaveText(`Logged in as ${username}`);
   }

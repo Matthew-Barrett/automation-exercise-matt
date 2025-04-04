@@ -22,47 +22,46 @@ export class HomePage {
         await this.page.goto('/');
     }
 
+    // Verify the home page is displayed by checking the URL and the presence of the slider
     async verifyHomePage() {
         await expect(this.page).toHaveURL("https://automationexercise.com/");
         await expect(this.page.locator("#slider")).toBeVisible();
     }
 
     async navigateToLoginPage() {
-        await this.loginNav.click();    
+        await this.loginNav.click();
     }
 
+    // Buys a product by its name
+    // This method locates the product card by its name, hovers over it to reveal the overlay, and clicks the "Add to Cart" button.
     async buyProduct(productName: string) {
-        // Locate the product by its name
         const productCard = this.page.locator(`.single-products:has-text("${productName}")`).first();
-        // Ensure the product is found
         if (await productCard.count() === 0) {
             throw new Error(`Product "${productName}" not found.`);
         }
-        // Hover over the product card to reveal the overlay
         await productCard.hover();
-        // Click "Add to Cart" button within the overlay
         await productCard.locator('.overlay-content .add-to-cart').first().click();
-        // Wait for the modal confirmation message
         await this.page.waitForSelector(`.modal-body p:text("Your product has been added to cart.")`);
-        // Click "Continue Shopping" to dismiss the modal
-        //await this.page.locator(`.modal-body p a:has-text("Continue Shopping")`).first().click();
     }
 
     async goToCart() {
         await this.cartButton.click();
     }
 
+    // Go to Cart via the main Navigation bar
     async navigateToCart() {
         await this.cartNav.click();
     }
 
+    // Clicks the signup/login button on the popup modal element to navigate to the login page
     async goToLoginPage() {
         await this.signUpLoginButton.click();
     }
 
+    // Verifyies that the user element is visible in the navigation bar, indicating that the user is logged in
     async verifyUserIsLoggedIn() {
         const userNav = await this.page.locator('.fa.fa-user');
         await expect(userNav).toBeVisible();
-      }
-      
+    }
+
 }

@@ -24,10 +24,13 @@ export class CheckoutPage {
         this.payAndConfirmButton = page.locator("#submit");
     }
 
+    // Verify the Address Details Bar has text
+    // TODO: Add a method to verify the actual address details
     async verifyCheckoutDetails() {
         await expect(this.page.locator(".step-one").first()).toHaveText("Address Details");
     }
 
+    // Enters a comment in the text area and clicks the "Place Order" button
     async enterOrderDetails(comment: string) {
         await this.commentTextArea.fill(comment);
         await this.placeOrderButton.click();
@@ -37,6 +40,7 @@ export class CheckoutPage {
         await this.placeOrderButton.click();
     }
 
+    // Enters payment details and clicks the "Pay and Confirm Order" button
     async enterPaymentDetails(name: string, card: string, cvc: string, expiry: string) {
         await this.nameOnCard.fill(name);
         await this.cardNumber.fill(card);
