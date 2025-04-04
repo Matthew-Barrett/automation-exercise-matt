@@ -6,6 +6,7 @@ export class HomePage {
     readonly cartButton: Locator;
     readonly cartNav: Locator;
     readonly signUpLoginButton: Locator;
+    readonly loginNav: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -13,6 +14,7 @@ export class HomePage {
         this.cartButton = page.locator(".modal-content").locator("a[href='/view_cart']").first();
         this.cartNav = page.locator("a:has-text(' Cart')").first();
         this.signUpLoginButton = page.locator("#checkoutModal a[href='/login']");
+        this.loginNav = page.locator("a[href='/login']");
         //await page.locator("#checkoutModal a[href='/login']").click();
 
     }
@@ -26,6 +28,9 @@ export class HomePage {
         await expect(this.page.locator("#slider")).toBeVisible();
     }
 
+    async navigateToLoginPage() {
+        await this.loginNav.click();    
+    }
 
 
     async buyProduct(productName: string) {
@@ -58,6 +63,7 @@ export class HomePage {
     async navigateToCart() {
         await this.cartNav.click();
     }
+   
 
     async goToLoginPage() {
         await this.signUpLoginButton.click();
