@@ -39,21 +39,19 @@ export class AccountCreationPage {
   // Generate random user data using Faker
   private generateRandomUserData() {
     return {
-      name: faker.name.fullName(),
+      name: faker.person.fullName(),
       email: faker.internet.email(),
       password: faker.internet.password(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      address: faker.address.streetAddress(),
-      //country: faker.address.country(),     
-      state: faker.address.state(),
-      city: faker.address.city(),
-      zipcode: faker.address.zipCode(),
+      firstName: faker.person.firstName(),
+      lastName: faker.person.lastName(),
+      address: faker.location.streetAddress(), 
+      state: faker.location.state(),
+      city: faker.location.city(),
+      zipcode: faker.location.zipCode(),
       mobile: faker.phone.number()
     };
   }
 
-  // Fill the signup form with generated data
   async fillSignupForm() {
     const userData = this.generateRandomUserData();
     await this.titleRadio.first().check();
@@ -70,7 +68,6 @@ export class AccountCreationPage {
 
   }
 
-  // Submit the form to create an account
   async submitSignupForm() {
     await this.registerButton.click();
   }

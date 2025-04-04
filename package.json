@@ -7,7 +7,10 @@
     "lint": "eslint . --ext .ts",
     "build": "tsc",
     "test": "npx playwright test",
-    "test:lint": "npm run lint && npm run test"
+    "test:lint": "npm run lint && npm run test",
+    "report": "npx playwright show-report",
+    "test:dev": "TEST_ENV=dev npx playwright test",
+    "test:test": "TEST_ENV=test npx playwright test"
   },
   "keywords": [],
   "author": "",

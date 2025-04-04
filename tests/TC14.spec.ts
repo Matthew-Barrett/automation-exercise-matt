@@ -7,6 +7,7 @@ import { AccountPage } from "../pages/AccountPage";
 import { faker } from "@faker-js/faker";
 import { AccountCreationPage } from "../pages/AccountCreationPage";
 
+
 test.beforeEach(async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
