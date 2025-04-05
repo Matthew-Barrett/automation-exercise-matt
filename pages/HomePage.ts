@@ -58,6 +58,10 @@ export class HomePage {
         await this.signUpLoginButton.click();
     }
 
+    async userLoggedInIcon() {
+        return this.page.locator('.fa.fa-user');
+    }
+
     // Verifyies that the user element is visible in the navigation bar, indicating that the user is logged in
     async verifyUserIsLoggedIn() {
         const userNav = await this.page.locator('.fa.fa-user');

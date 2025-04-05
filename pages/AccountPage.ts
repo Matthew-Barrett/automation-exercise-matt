@@ -18,4 +18,8 @@ export class AccountPage {
     await this.deleteAccountButton.click();
     await expect(this.page.locator("h2").first()).toHaveText("Account Deleted!");
   }
+
+  async getAccountDeletedMessage() {
+    return await this.page.locator("h2").first().textContent();
+  }
 }

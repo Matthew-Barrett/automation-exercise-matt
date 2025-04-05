@@ -34,35 +34,43 @@ test.beforeEach(async ({ browser }) => {
 });
 
 test("15 - Place Order - Register before Checkout", async ({ page }) => {
-  const homePage = new HomePage(page);
-  const cartPage = new CartPage(page);
-  const loginPage = new LoginPage(page);
-  const checkoutPage = new CheckoutPage(page);
-  const accountPage = new AccountPage(page);
-  const accountCreationPage = new AccountCreationPage(page);
-  await homePage.visit();
-  await homePage.verifyHomePage();
-  await homePage.navigateToLoginPage();
-  await loginPage.signUp();
-  await accountCreationPage.fillSignupForm();
-  await accountCreationPage.submitSignupForm();
-  await accountCreationPage.verifyAccountCreated();
-  await accountCreationPage.continueToHomePage();
-  await homePage.verifyUserIsLoggedIn();
-  await homePage.buyProduct("Blue Top");
-  await homePage.goToCart();
-  await cartPage.verifyCartPage();
-  await cartPage.proceedToCheckout();
-  await homePage.navigateToCart();
-  await cartPage.proceedToCheckout();
-  await checkoutPage.verifyCheckoutDetails();
-  await checkoutPage.enterOrderDetails("Please deliver quickly!");
-  await checkoutPage.enterPaymentDetails(
-    faker.person.fullName(),
-    faker.finance.creditCardNumber(),
-    faker.finance.creditCardCVV(),
-    "12/25"
-  );
-  await expect(page.locator(".title.text-center").first()).toHaveText("Order Placed!");
-  await accountPage.deleteAccount();
+    const homePage = new HomePage(page);
+    const cartPage = new CartPage(page);
+    const loginPage = new LoginPage(page);
+    const checkoutPage = new CheckoutPage(page);
+    const accountPage = new AccountPage(page);
+    const accountCreationPage = new AccountCreationPage(page);
+
+    await homePage.visit();
+    await expect(homePage.page).toHaveURL("https://automationexercise.com/");
+    await homePage.navigateToLoginPage();
+    await loginPage.signUp();
+    await accountCreationPage.fillSignupForm();
+    await accountCreationPage.submitSignupForm();
+    const accountCreatedText = await accountCreationPage.getAccountCreatedMessage();
+    expect(accountCreatedText).toContain("Account Created!");
+    const accountCreationSuccessMEssage = await accountCreationPage.getAccountCreationSuccessMessage();
+    expect(accountCreationSuccessMEssage).toContain("Congratulations! Your new account has been successfully created!");
+    await accountCreationPage.continueToHomePage();
+    const userLoggedInIcon = await homePage.userLoggedInIcon();
+    expect(userLoggedInIcon).toBeVisible();
+    await homePage.buyProduct("Blue Top");
+    await homePage.goToCart();
+    await expect(cartPage.page).toHaveURL(/\/view_cart/);
+    await cartPage.proceedToCheckout();
+    const addressDetailsText = await checkoutPage.getAddressDetailsText();
+    expect(addressDetailsText).toContain("Address Details");
+    await checkoutPage.enterOrderDetails("Please deliver quickly!");
+    await checkoutPage.enterPaymentDetails(
+        faker.person.fullName(),
+        faker.finance.creditCardNumber(),
+        faker.finance.creditCardCVV(),
+        "12/25"
+    );
+    const orderPlacedSuccessMessage = await checkoutPage.getOrderPlacedSuccessMessage();
+    expect(orderPlacedSuccessMessage).toContain("Order Placed!");
+    await accountPage.deleteAccount();
+    const accountDeletedMessage = await accountPage.getAccountDeletedMessage();
+    expect(accountDeletedMessage).toContain("Account Deleted!");
+
 });

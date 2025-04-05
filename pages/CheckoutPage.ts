@@ -49,4 +49,12 @@ export class CheckoutPage {
         await this.expiryYear.fill(expiry);
         await this.payAndConfirmButton.click();
     }
+
+    async getOrderPlacedSuccessMessage() {
+        return await this.page.locator(".title.text-center").first().textContent();
+    }
+
+    async getAddressDetailsText() {
+        return await this.page.locator(".step-one").first().textContent();
+    }
 }

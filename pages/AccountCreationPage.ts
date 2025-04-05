@@ -85,6 +85,14 @@ export class AccountCreationPage {
     await this.page.waitForSelector('p:has-text("Congratulations! Your new account has been successfully created!")');
   }
 
+  async getAccountCreatedMessage() {
+    return await this.page.locator("h2:has-text('Account Created!')").textContent();
+  }
+
+  async getAccountCreationSuccessMessage() {
+    return await this.page.locator('p:has-text("Congratulations! Your new account has been successfully created!")').textContent();
+  }
+
   async continueToHomePage(){
     await this.page.click('.btn.btn-primary');
     
