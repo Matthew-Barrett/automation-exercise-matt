@@ -54,6 +54,7 @@ test("TC14 - Place Order - Register while Checkout", async ({ page }) => {
   await accountPage.deleteAccount();
   const accountDeletedMessage = await accountPage.getAccountDeletedMessage();
   expect(accountDeletedMessage).toContain("Account Deleted!");
+  await accountPage.clickContinueAfterAccountDeletion();
 });
 
 

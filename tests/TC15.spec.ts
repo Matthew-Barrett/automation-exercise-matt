@@ -72,5 +72,6 @@ test("15 - Place Order - Register before Checkout", async ({ page }) => {
     await accountPage.deleteAccount();
     const accountDeletedMessage = await accountPage.getAccountDeletedMessage();
     expect(accountDeletedMessage).toContain("Account Deleted!");
+    await accountPage.clickContinueAfterAccountDeletion();
 
 });

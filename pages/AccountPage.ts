@@ -22,4 +22,8 @@ export class AccountPage {
   async getAccountDeletedMessage() {
     return await this.page.locator("h2").first().textContent();
   }
+
+  async clickContinueAfterAccountDeletion(){
+    await this.page.locator("a.btn.btn-primary").click();
+  }
 }
